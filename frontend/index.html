@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lilongwe Health Facility Accessibility</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand">
+    <div class="logo">+</div>
+    <div class="bt">Lilongwe Health Facility Accessibility</div>
+  </div>
+  <nav id="mainTabs">
+    <button data-v="map" class="active">Map</button>
+    <button data-v="analytics">Coverage by Facility Type</button>
+    <button data-v="data">Data Table</button>
+  </nav>
+</header>
+
+<div id="body">
+  <aside id="side">
+    <div class="sec">
+      <div class="h">Overview</div>
+      <div class="stats">
+        <div class="stat"><div class="sl">Total settlements</div><div class="sv" id="totN">-</div></div>
+        <div class="stat"><div class="sl">Total population</div><div class="sv" id="totPop">-</div><div class="ss" id="popNote"></div></div>
+        <div class="stat wide"><div class="sl">District area</div>
+          <div class="sv" id="areaTot">-</div>
+          <div class="ss" id="areaNote"></div></div>
+      </div>
+      <div class="cards">
+        <div class="card ok"><div class="cl">Covered</div>
+          <div class="cn"><span class="big g" id="covN">-</span><span class="pct" id="covP"></span></div>
+          <div class="cp" id="covPop"></div></div>
+        <div class="card bad"><div class="cl">Underserved</div>
+          <div class="cn"><span class="big r" id="undN">-</span><span class="pct" id="undP"></span></div>
+          <div class="cp" id="undPop"></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="h">Search Settings</div>
+      <label class="fl">Maximum distance to a health facility
+        <div class="inp"><input id="radius" type="number" value="3" min="0.1" max="100" step="0.1"><span>km</span></div>
+      </label>
+      <label class="fl">Facility type
+        <select id="ftype"><option value="all">All facility types</option></select></label>
+      <div class="h small">Show on map</div>
+      <label class="tg"><span><i class="dot b"></i> Facility coverage area</span><input id="showZones" type="checkbox" checked><b class="sw"></b></label>
+      <label class="tg"><span><i class="dot g"></i> Covered settlements</span><input id="showCovered" type="checkbox" checked><b class="sw"></b></label>
+      <label class="tg"><span><i class="dot r"></i> Underserved settlements</span><input id="showUnder" type="checkbox" checked><b class="sw red"></b></label>
+      <label class="tg"><span><i class="dot p"></i> Area without coverage</span><input id="showUncovered" type="checkbox" checked><b class="sw red"></b></label>
+    </div>
+
+    <div class="sec">
+      <div class="h"><span>Settlement Results</span><span class="mono" id="shown"></span></div>
+      <div id="tabs">
+        <button data-view="all" class="active">All</button>
+        <button data-view="covered">Covered</button>
+        <button data-view="underserved">Underserved</button>
+      </div>
+      <a id="csv" class="csvlink" href="#">&#8681; Download underserved list (CSV)</a>
+      <ul id="list"></ul>
+    </div>
+  </aside>
+
+  <main>
+    <section id="vMap" class="view">
+      <div id="map"></div>
+      <div id="chip">Lilongwe District, Central Region</div>
+      <div id="legend">
+        <b>Legend</b>
+        <div><i class="sq b"></i> Health facility</div>
+        <div><i class="ci"></i> Coverage area</div>
+        <div><i class="sq g"></i> Covered settlement</div>
+        <div><i class="sq r"></i> Underserved settlement</div>
+      </div>
+      <div id="sel" class="hidden"></div>
+    </section>
+    <section id="vAnalytics" class="view hidden"></section>
+    <section id="vData" class="view hidden"></section>
+  </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
